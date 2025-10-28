@@ -22,6 +22,7 @@
                         <a href="{{ route('pendaftaran.create') }}" class="btn btn-md btn-success mb-3">TAMBAH DATA</a>
                         <a href="{{ route('pendaftaran.export') }}" class="btn btn-md btn-info mb-3">EXPORT EXCEL</a>
                         <a href="{{ route('pendaftaran.show_import_form') }}" class="btn btn-md btn-warning mb-3">IMPORT DATA</a>
+                        <a href="{{ route('pendaftaran.export_pdf') }}" class="btn btn-md btn-danger mb-3">EXPORT PDF</a>
                         <table class="table table-bordered">
 
                             <thead>

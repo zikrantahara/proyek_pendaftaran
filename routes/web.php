@@ -16,3 +16,5 @@ Route::get('pendaftaran-export', [PendaftaranController::class, 'export'])->name
 // TAMBAHKAN DUA ROUTE DI BAWAH INI
 Route::get('pendaftaran-import', [PendaftaranController::class, 'showImportForm'])->name('pendaftaran.show_import_form');
 Route::post('pendaftaran-import', [PendaftaranController::class, 'import'])->name('pendaftaran.import');
+
+Route::get('pendaftaran-export-pdf', [PendaftaranController::class, 'exportPDF'])->name('pendaftaran.export_pdf');

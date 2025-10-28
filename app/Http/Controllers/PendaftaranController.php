@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PendaftaranExport;
 use App\Imports\PendaftaranImport;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PendaftaranController extends Controller
 {
@@ -178,5 +179,26 @@ class PendaftaranController extends Controller
 
         // Redirect kembali dengan pesan sukses
         return redirect()->route('pendaftaran.index')->with('success', 'Data pendaftar berhasil diimpor!');
+    }
+
+    /**
+     * Mengekspor data pendaftar ke file PDF.
+     */
+    public function exportPDF()
+    {
+        // 1. Ambil semua data pendaftar
+        $pendaftarans = Pendaftaran::all();
+
+        // 2. Siapkan data untuk dikirim ke view
+        $data = [
+            'pendaftarans' => $pendaftarans
+        ];
+
+        // 3. Muat view 'pendaftaran.pdf' dan kirimkan data
+        $pdf = Pdf::loadView('pendaftaran.pdf', $data);
+
+        // 4. Atur nama file dan unduh
+        $namaFile = 'laporan_data_pendaftar_' . date('Y-m-d_H-i-s') . '.pdf';
+        return $pdf->download($namaFile);
     }
 }
